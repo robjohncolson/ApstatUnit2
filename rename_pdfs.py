@@ -5,23 +5,23 @@ import re
 
 # Define the mapping of topics to their topic numbers
 topic_mapping = {
-    'TheLanguageofVariationVariables': '1.2',
-    'RepresentingaCategoricalVariablewithTables': '1.3',
-    'RepresentingaCategoricalVariablewithGraphs': '1.4',
-    'RepresentingaQuantitativeVariablewithGraphs': '1.5',
-    'DescribingtheDistributionofaQuantitativeVariable': '1.6',
-    'SummaryStatisticsforaQuantitativeVariable': '1.7',
-    'GraphicalRepresentationsofSummaryStatistics': '1.8',
-    'ComparingDistributionsofaQuantitativeVariable': '1.9',
-    'TheNormalDistribution': '1.10',
-    'Unit1ProgressCheckFRQ': 'unit1_pc_frq',
-    'Unit1ProgressCheckMCQPartA': 'unit1_pc_mcq_parta',
-    'Unit1ProgressCheckMCQPartB': 'unit1_pc_mcq_partb',
+    'IntroducingStatisticsAreVariablesRelated': '2.1',
+    'RepresentingTwoCategoricalVariables': '2.2',
+    'StatisticsforTwoCategoricalVariables': '2.3',
+    'RepresentingtheRelationshipBetweenTwoQuantitativeVariables': '2.4',
+    'Correlation': '2.5',
+    'LinearRegressionModels': '2.6',
+    'Residuals': '2.7',
+    'LeastSquaresRegression': '2.8',
+    'AnalyzingDeparturesfromLinearity': '2.9',
+    'Unit2ProgressCheckFRQ': 'unit2_pc_frq',
+    'Unit2ProgressCheckMCQPartA': 'unit2_pc_mcq_parta',
+    'Unit2ProgressCheckMCQPartB': 'unit2_pc_mcq_partb',
 }
 
 def rename_pdfs():
-    # Path to the Unit 1 PDFs
-    pdf_dir = 'pdfs/unit1'
+    # Path to the Unit 2 PDFs
+    pdf_dir = 'pdfs/unit2'
     
     # Check if directory exists
     if not os.path.exists(pdf_dir):
