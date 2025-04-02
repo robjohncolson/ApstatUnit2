@@ -1,0 +1,36 @@
+LPS+ColsonR@LPS-5CD32865BG MINGW64 ~/Downloads/ApstatUnit2
+$ ls -R
+.:
+Index-reference-spec.gemini.json  knowledge-tree.md
+check-reference.py                ls-output.txt
+claude-build-prompt.txt           media-map.md
+gemini-index-spec-maker.txt       pdfs/
+grok-gather-material-prompt.txt   rename_pdfs.py*
+index.html
+
+./pdfs:
+UnitWeights.pdf  unit2/
+
+./pdfs/unit2:
+SG_AnalyzingDeparturesfromLinearityQuiz_67ed5225dfeda5.67ed52279a5008.78939384.pdf
+SG_CorrelationQuiz_67ed4ed9c88431.67ed4edab73a42.45451863.pdf
+SG_LeastSquaresRegressionQuiz_67ed505f903aa1.67ed50609042a8.71673336.pdf
+SG_LeastSquaresRegressionQuiz_67ed50bc5121d0.67ed50bd6243d3.29647806.pdf
+SG_LinearRegressionModelsQuiz_67ed4f5a572744.67ed4f5b3ba668.55437322.pdf
+SG_RepresentingTwoCategoricalVariablesQuiz_67ed4dba88b3a1.67ed4dbb775ed2.38423488.pdf
+SG_RepresentingtheRelationshipBetweenTwoQuantitativeVariablesQuiz_67ed4e56addb54.67ed4e578957b8.78699330.pdf
+SG_ResidualsQuiz_67ed50036c1ab8.67ed5004654155.77895924.pdf
+SG_StatisticsforTwoCategoricalVariablesQuiz_67ed4dfec9f0f4.67ed4e000fa7a9.86383723.pdf
+SG_Unit2ProgressCheckFRQ_67ed5128f29946.67ed512a66a6d1.68756112.pdf
+SG_Unit2ProgressCheckMCQPartA_67ed50fd54f964.67ed50ff858b62.00857082.pdf
+SG_Unit2ProgressCheckMCQPartB_67ed50f89fe1b5.67ed50fb0c98a1.32220047.pdf
+TB_AnalyzingDeparturesfromLinearityQuiz_67ed521fef45b8.67ed522158f7a5.07100302.pdf
+TB_CorrelationQuiz_67ed4ee3e46173.67ed4ee4d044e5.65433964.pdf
+TB_LeastSquaresRegressionQuiz_67ed505b0a2767.67ed505bed0073.60417513.pdf
+TB_LeastSquaresRegressionQuiz_67ed50b8d93428.67ed50b9cb8274.15284231.pdf
+TB_LinearRegressionModelsQuiz_67ed4f568dcda4.67ed4f57642e91.11826273.pdf
+TB_RepresentingTwoCategoricalVariablesQuiz_67ed4db650dd40.67ed4db74936a2.53564084.pdf
+TB_RepresentingtheRelationshipBetweenTwoQuantitativeVariablesQuiz_67ed4e532f2687.67ed4e5412f300.91579080.pdf
+TB_ResidualsQuiz_67ed4fff296c65.67ed50002d5bc3.73472247.pdf
+TB_StatisticsforTwoCategoricalVariablesQuiz_67ed4dfb0f5e11.67ed4dfc23e027.77891136.pdf
+TB_Unit2ProgressCheckFRQ_67ed51244f4c87.67ed51255552d2.35654768.pdf
