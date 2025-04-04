@@ -711,15 +711,25 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                     
                     ${topic.quizzes.map((quiz, index) => `
                         ${quiz.questionPdf ? `
-                        <a href="${quiz.questionPdf}" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                            ${isCapstone ? (index === 0 ? "FRQ Questions PDF" : index === 1 ? "MCQ Part A PDF" : "MCQ Part B PDF") : "Download Questions PDF (for Grok)"}
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${quiz.completed ? 'checked' : ''} 
+                                data-topic-id="${topic.id}" 
+                                data-item-type="quiz" 
+                                data-quiz-id="${quiz.quizId}" 
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${quiz.questionPdf}" target="_blank" class="flex items-center flex-grow text-blue-600 hover:text-blue-800">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                ${isCapstone ? (index === 0 ? "FRQ Questions PDF" : index === 1 ? "MCQ Part A PDF" : "MCQ Part B PDF") : "Download Questions PDF (for Grok)"}
+                            </a>
+                        </div>
                         ` : ''}
                         ${quiz.answersPdf ? `
-                        <a href="${quiz.answersPdf}" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800">
+                        <a href="${quiz.answersPdf}" target="_blank" class="flex items-center text-blue-600 hover:text-blue-800 ml-6">
                             <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
@@ -730,31 +740,53 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                     
                     ${topic.videos.map((video, index) => `
                         ${video.url ? `
-                        <a href="${video.url}" target="_blank" class="flex items-center text-yellow-600 hover:text-yellow-800 group relative">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
-                            </svg>
-                            Watch Topic Video${topic.videos.length > 1 ? ` ${index + 1}` : ''}
-                            ${video.altUrl ? `
-                            <span class="ml-1 text-xs bg-green-100 text-green-800 px-1 rounded">
-                                <svg class="w-3 h-3 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${video.completed ? 'checked' : ''} 
+                                data-topic-id="${topic.id}" 
+                                data-item-type="video" 
+                                data-item-url="${video.url}" 
+                                data-item-index="${index}"
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${video.url}" target="_blank" class="flex items-center flex-grow text-yellow-600 hover:text-yellow-800 group relative">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
                                 </svg>
-                            </span>
-                            <span class="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-white border border-gray-200 rounded p-2 shadow-md text-xs text-gray-700 w-48 z-50">
-                                If AP Classroom is down, <a href="${video.altUrl}" class="text-blue-600 hover:text-blue-800">click here</a> for the backup video.
-                            </span>
-                            ` : ''}
-                        </a>
+                                Watch Topic Video${topic.videos.length > 1 ? ` ${index + 1}` : ''}
+                                ${video.altUrl ? `
+                                <span class="ml-1 text-xs bg-green-100 text-green-800 px-1 rounded">
+                                    <svg class="w-3 h-3 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                                <span class="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-white border border-gray-200 rounded p-2 shadow-md text-xs text-gray-700 w-48 z-50">
+                                    If AP Classroom is down, <a href="${video.altUrl}" class="text-blue-600 hover:text-blue-800">click here</a> for the backup video.
+                                </span>
+                                ` : ''}
+                            </a>
+                        </div>
                         ` : ''}
                         
                         ${!video.url && video.altUrl ? `
-                        <a href="${video.altUrl}" target="_blank" class="flex items-center text-yellow-600 hover:text-yellow-800">
-                            <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
-                            </svg>
-                            Watch Topic Video${topic.videos.length > 1 ? ` ${index + 1}` : ''} (Alternate Source)
-                        </a>
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${video.completed ? 'checked' : ''} 
+                                data-topic-id="${topic.id}" 
+                                data-item-type="video" 
+                                data-item-url="${video.altUrl}" 
+                                data-item-index="${index}"
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${video.altUrl}" target="_blank" class="flex items-center flex-grow text-yellow-600 hover:text-yellow-800">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
+                                </svg>
+                                Watch Topic Video${topic.videos.length > 1 ? ` ${index + 1}` : ''} (Alternate Source)
+                            </a>
+                        </div>
                         ` : ''}
                     `).join('')}
                     
@@ -1362,20 +1394,30 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                         <div class="flex flex-col gap-2">`;
                 
                 // Add quiz PDFs
-                currentTopic.quizzes.forEach((quiz) => {
+                currentTopic.quizzes.forEach((quiz, index) => {
                     if (quiz.questionPdf) {
                         infoHTML += `
-                        <a href="${quiz.questionPdf}" target="_blank" download class="flex items-center text-blue-600 hover:text-blue-800 bg-white p-2 rounded border border-blue-200 hover:bg-blue-50">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-                            ${currentTopic.isCapstone ? "FRQ Questions PDF" : "Download Questions PDF"}
-                        </a>`;
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${quiz.completed ? 'checked' : ''} 
+                                data-topic-id="${currentTopic.id}" 
+                                data-item-type="quiz" 
+                                data-quiz-id="${quiz.quizId}" 
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${quiz.questionPdf}" target="_blank" download class="flex items-center flex-grow text-blue-600 hover:text-blue-800 bg-white p-2 rounded border border-blue-200 hover:bg-blue-50">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                                ${currentTopic.isCapstone ? "FRQ Questions PDF" : "Download Questions PDF"}
+                            </a>
+                        </div>`;
                     }
                     
                     if (quiz.answersPdf) {
                         infoHTML += `
-                        <a href="${quiz.answersPdf}" target="_blank" download class="flex items-center text-blue-600 hover:text-blue-800 bg-white p-2 rounded border border-blue-200 hover:bg-blue-50">
+                        <a href="${quiz.answersPdf}" target="_blank" download class="flex items-center text-blue-600 hover:text-blue-800 bg-white p-2 rounded border border-blue-200 hover:bg-blue-50 ml-6">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
@@ -1390,30 +1432,52 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                     
                     if (video.url) {
                         infoHTML += `
-                        <a href="${video.url}" target="_blank" class="flex items-center text-yellow-600 hover:text-yellow-800 bg-white p-2 rounded border border-yellow-200 hover:bg-yellow-50 group relative">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
-                            </svg>
-                            Watch Topic Video${videoNumber}
-                            ${video.altUrl ? `
-                            <span class="ml-1 text-xs bg-green-100 text-green-800 px-1 rounded">
-                                <svg class="w-3 h-3 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${video.completed ? 'checked' : ''} 
+                                data-topic-id="${currentTopic.id}" 
+                                data-item-type="video" 
+                                data-item-url="${video.url}" 
+                                data-item-index="${index}"
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${video.url}" target="_blank" class="flex items-center flex-grow text-yellow-600 hover:text-yellow-800 bg-white p-2 rounded border border-yellow-200 hover:bg-yellow-50 group relative">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
                                 </svg>
-                            </span>
-                            <span class="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-white border border-gray-200 rounded p-2 shadow-md text-xs text-gray-700 w-48 z-50">
-                                If AP Classroom is down, <a href="${video.altUrl}" class="text-blue-600 hover:text-blue-800">click here</a> for the backup video.
-                            </span>
-                            ` : ''}
-                        </a>`;
+                                Watch Topic Video${videoNumber}
+                                ${video.altUrl ? `
+                                <span class="ml-1 text-xs bg-green-100 text-green-800 px-1 rounded">
+                                    <svg class="w-3 h-3 inline-block" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                                <span class="absolute left-0 bottom-full mb-2 hidden group-hover:block bg-white border border-gray-200 rounded p-2 shadow-md text-xs text-gray-700 w-48 z-50">
+                                    If AP Classroom is down, <a href="${video.altUrl}" class="text-blue-600 hover:text-blue-800">click here</a> for the backup video.
+                                </span>
+                                ` : ''}
+                            </a>
+                        </div>`;
                     } else if (video.altUrl) {
                         infoHTML += `
-                        <a href="${video.altUrl}" target="_blank" class="flex items-center text-yellow-600 hover:text-yellow-800 bg-white p-2 rounded border border-yellow-200 hover:bg-yellow-50">
-                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
-                            </svg>
-                            Watch Topic Video${videoNumber} (Alternate Source)
-                        </a>`;
+                        <div class="flex items-center gap-2">
+                            <input 
+                                type="checkbox" 
+                                ${video.completed ? 'checked' : ''} 
+                                data-topic-id="${currentTopic.id}" 
+                                data-item-type="video" 
+                                data-item-url="${video.altUrl}" 
+                                data-item-index="${index}"
+                                onchange="handleItemCompletionChange(event)"
+                            >
+                            <a href="${video.altUrl}" target="_blank" class="flex items-center flex-grow text-yellow-600 hover:text-yellow-800 bg-white p-2 rounded border border-yellow-200 hover:bg-yellow-50">
+                                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"></path>
+                                </svg>
+                                Watch Topic Video${videoNumber} (Alternate Source)
+                            </a>
+                        </div>`;
                     }
                 });
                 
@@ -1493,8 +1557,8 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                 });
                 
                 // Create the topic content
-                topicEl.innerHTML = `
-                    <div class="flex justify-between items-center">
+                let topicContent = `
+                    <div class="flex justify-between items-center mb-2">
                         <div>
                             <span class="font-medium">${topic.name}</span>
                             <span class="text-sm text-gray-600">${topic.description}</span>
@@ -1512,6 +1576,59 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                         </span>
                     </div>
                 `;
+                
+                // Only show videos and quizzes details if it's the current topic
+                if (isCurrent) {
+                    // Add videos 
+                    if (topic.videos.length > 0) {
+                        topicContent += `<div class="mt-2 text-sm text-gray-600 font-medium">Videos:</div>`;
+                        topic.videos.forEach((video, index) => {
+                            const videoUrl = video.url || video.altUrl;
+                            if (videoUrl) {
+                                topicContent += `
+                                <div class="flex items-center gap-2 ml-2 mt-1">
+                                    <input 
+                                        type="checkbox" 
+                                        ${video.completed ? 'checked' : ''} 
+                                        data-topic-id="${topic.id}" 
+                                        data-item-type="video" 
+                                        data-item-url="${videoUrl}" 
+                                        data-item-index="${index}"
+                                        onchange="handleItemCompletionChange(event)"
+                                    >
+                                    <span class="text-xs ${video.completed ? 'text-green-600' : 'text-gray-500'}">
+                                        Video ${topic.videos.length > 1 ? (index + 1) : ''}
+                                        ${video.completed ? ' ✓' : ''}
+                                    </span>
+                                </div>`;
+                            }
+                        });
+                    }
+                    
+                    // Add quizzes
+                    if (topic.quizzes.length > 0) {
+                        topicContent += `<div class="mt-2 text-sm text-gray-600 font-medium">Quizzes:</div>`;
+                        topic.quizzes.forEach((quiz, index) => {
+                            topicContent += `
+                            <div class="flex items-center gap-2 ml-2 mt-1">
+                                <input 
+                                    type="checkbox" 
+                                    ${quiz.completed ? 'checked' : ''} 
+                                    data-topic-id="${topic.id}" 
+                                    data-item-type="quiz" 
+                                    data-quiz-id="${quiz.quizId}" 
+                                    onchange="handleItemCompletionChange(event)"
+                                >
+                                <span class="text-xs ${quiz.completed ? 'text-green-600' : 'text-gray-500'}">
+                                    Quiz ${topic.quizzes.length > 1 ? (index + 1) : ''}
+                                    ${quiz.completed ? ' ✓' : ''}
+                                </span>
+                            </div>`;
+                        });
+                    }
+                }
+                
+                topicEl.innerHTML = topicContent;
                 
                 // Add to container
                 quickAccessContainer.appendChild(topicEl);
@@ -1540,8 +1657,35 @@ Thank you for helping me prepare for my AP Statistics exam!`;
             }
         }
         
+        // Function to handle item completion checkbox changes
+        function handleItemCompletionChange(event) {
+            const checkbox = event.target;
+            const dataset = checkbox.dataset;
+            
+            // Log the data attributes to the console
+            console.log('Checkbox changed:', dataset);
+            
+            // Get the necessary data attributes
+            const topicId = dataset.topicId;
+            const itemType = dataset.itemType;
+            const itemUrl = dataset.itemUrl;
+            const quizId = dataset.quizId;
+            const itemIndex = dataset.itemIndex;
+            
+            // Log the specific values
+            console.log({
+                topicId,
+                itemType,
+                itemUrl,
+                quizId,
+                itemIndex,
+                checked: checkbox.checked
+            });
+        }
+
         // Make the topic functions available globally
         window.markTopicAsCompleted = markTopicAsCompleted;
+        window.handleItemCompletionChange = handleItemCompletionChange;
     </script>
     
     <!-- React Component -->
