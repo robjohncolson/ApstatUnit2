@@ -1071,32 +1071,82 @@ Thank you for helping me prepare for my AP Statistics exam!`;
         
         // Function to save topic progress to local storage
         function saveTopicProgress() {
-            const progress = pdfFiles.map(topic => ({
-                id: topic.id,
-                current: topic.current,
-                videos: topic.videos.map(video => ({
-                    url: video.url,
-                    altUrl: video.altUrl,
-                    completed: video.completed,
-                    completionDate: video.completionDate
-                })),
-                quizzes: topic.quizzes.map(quiz => ({
-                    quizId: quiz.quizId,
-                    completed: quiz.completed,
-                    completionDate: quiz.completionDate
-                }))
-            }));
+            // Unit-specific key for localStorage
+            const storageKey = 'apStatsUnit2Progress';
             
-            localStorage.setItem('apStatsTopicProgress', JSON.stringify(progress));
+            // Save the entire pdfFiles array with its nested structure
+            localStorage.setItem(storageKey, JSON.stringify(pdfFiles));
         }
         
         // Function to load topic progress from local storage
         function loadTopicProgress() {
-            const savedProgress = localStorage.getItem('apStatsTopicProgress');
+            // Unit-specific key for localStorage
+            const newStorageKey = 'apStatsUnit2Progress';
+            const legacyStorageKey = 'apStatsTopicProgress';
             
-            if (savedProgress) {
+            // Try to load from the new unit-specific key first
+            const savedProgressNew = localStorage.getItem(newStorageKey);
+            
+            if (savedProgressNew) {
                 try {
-                    const progress = JSON.parse(savedProgress);
+                    // Parse the saved pdfFiles array
+                    const savedPdfFiles = JSON.parse(savedProgressNew);
+                    
+                    // Replace the current pdfFiles array with the saved one
+                    // But make sure we only update existing topics and preserve the structure
+                    savedPdfFiles.forEach((savedTopic, index) => {
+                        // Only update if the index exists in our current pdfFiles array
+                        if (index < pdfFiles.length) {
+                            // Preserve important topic metadata that shouldn't change
+                            const topicToUpdate = pdfFiles[index];
+                            const topicId = topicToUpdate.id;
+                            const topicName = topicToUpdate.name;
+                            const topicDescription = topicToUpdate.description;
+                            const isCapstone = topicToUpdate.isCapstone;
+                            
+                            // Check if the saved topic has the same ID
+                            if (savedTopic.id === topicId) {
+                                // Update current status
+                                topicToUpdate.current = savedTopic.current || false;
+                                
+                                // Update videos
+                                if (savedTopic.videos && Array.isArray(savedTopic.videos)) {
+                                    savedTopic.videos.forEach((savedVideo, vIndex) => {
+                                        if (vIndex < topicToUpdate.videos.length) {
+                                            // Preserve the URL but update completion status
+                                            topicToUpdate.videos[vIndex].completed = savedVideo.completed || false;
+                                            topicToUpdate.videos[vIndex].completionDate = savedVideo.completionDate || null;
+                                        }
+                                    });
+                                }
+                                
+                                // Update quizzes
+                                if (savedTopic.quizzes && Array.isArray(savedTopic.quizzes)) {
+                                    savedTopic.quizzes.forEach((savedQuiz, qIndex) => {
+                                        if (qIndex < topicToUpdate.quizzes.length) {
+                                            // Preserve the quiz IDs but update completion status
+                                            topicToUpdate.quizzes[qIndex].completed = savedQuiz.completed || false;
+                                            topicToUpdate.quizzes[qIndex].completionDate = savedQuiz.completionDate || null;
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
+                    
+                    console.log('Loaded topic progress from unit-specific storage');
+                    return;
+                } catch (e) {
+                    console.error('Error parsing saved progress from unit-specific storage:', e);
+                }
+            }
+            
+            // Fall back to legacy storage key if new format isn't available
+            const savedProgressLegacy = localStorage.getItem(legacyStorageKey);
+            
+            if (savedProgressLegacy) {
+                try {
+                    const progress = JSON.parse(savedProgressLegacy);
                     
                     // Update the pdfFiles array with saved progress
                     progress.forEach(savedTopic => {
@@ -1144,8 +1194,13 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                             }
                         }
                     });
+                    
+                    console.log('Loaded topic progress from legacy storage');
+                    
+                    // Migrate to the new storage format
+                    saveTopicProgress();
                 } catch (e) {
-                    console.error('Error parsing saved progress:', e);
+                    console.error('Error parsing saved progress from legacy storage:', e);
                 }
             }
         }
