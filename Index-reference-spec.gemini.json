@@ -1,249 +1,146 @@
 {
-  "description": "An HTML webpage for AP Statistics Unit 2, providing learning resources including a guided learning flow, an interactive flowchart, a prompt for an AI tutor (Grok), and downloadable study materials (PDFs, video links). The page uses Tailwind CSS for styling, React for the learning flow component, Mermaid.js for the flowchart, and extensive vanilla JavaScript for dynamic content updates, tab management, and progress tracking via local storage.",
-  "fileName": "index.html",
-  "fileType": "HTML",
-  "libraries": [
+  "concept": "HTML Document Infrastructure",
+  "description": "A conceptual map outlining the typical structure, components, relationships, and associated technologies of an HTML file/program.",
+  "type": "RootConcept",
+  "version": "HTML5 (Assumed)",
+  "children": [
     {
-      "name": "Tailwind CSS",
-      "purpose": "Utility-first CSS framework for styling.",
-      "source": "CDN (tailwindcss.com)"
-    },
-    {
-      "name": "React",
-      "purpose": "JavaScript library for building user interfaces (used for the Learning Flow tab).",
-      "source": "CDN (unpkg.com)"
-    },
-    {
-      "name": "ReactDOM",
-      "purpose": "Entry point to the DOM and server renderers for React.",
-      "source": "CDN (unpkg.com)"
-    },
-    {
-      "name": "Babel Standalone",
-      "purpose": "Transpiles JSX (used in the React component) in the browser.",
-      "source": "CDN (unpkg.com)"
-    },
-    {
-      "name": "Mermaid JS",
-      "purpose": "Renders diagrams and flowcharts from text-based definitions.",
-      "source": "CDN (jsdelivr.net)"
-    }
-  ],
-  "styling": {
-    "framework": "Tailwind CSS",
-    "inlineStyles": [
-      {
-        "selector": ".tab-content",
-        "purpose": "Hides inactive tab content panes."
-      },
-      {
-        "selector": ".tab-content.active",
-        "purpose": "Displays the active tab content pane."
-      },
-      {
-        "selector": ".tab-button",
-        "purpose": "Basic styling for tab navigation buttons."
-      },
-      {
-        "selector": ".tab-button.active",
-        "purpose": "Styling for the currently active tab button."
-      },
-      {
-        "selector": ".pulse-animation",
-        "purpose": "CSS animation to highlight a selected topic card briefly."
-      },
-      {
-        "selector": ".completed-state",
-        "purpose": "Visual indication (opacity, overlay) when all topics are completed."
-      },
-      {
-        "selector": ".capstone-highlight",
-        "purpose": "Special border/shadow for the capstone topic card when all topics are completed."
-      }
-    ]
-  },
-  "structure": {
-    "root": "html",
-    "head": {
-      "metadata": ["charset", "viewport"],
-      "title": "AP Statistics Unit 2: Exploring Two-Variable Data",
-      "scripts": "Links to external libraries (Tailwind, React, ReactDOM, Babel, Mermaid)",
-      "styles": "Inline CSS for tab control and custom effects."
-    },
-    "body": {
-      "container": "Main content wrapper (div.container.mx-auto)",
-      "header": {
-        "title": "h1",
-        "subtitle": "p",
-        "examWeight": "div (yellow banner)"
-      },
-      "tabNavigation": {
-        "container": "div.flex.mb-0.border-b",
-        "buttons": [
-          {"id": "tab-learning-flow", "text": "Learning Flow", "initialState": "active"},
-          {"id": "tab-flowchart", "text": "Flowchart"},
-          {"id": "tab-grok-prompt", "text": "Grok Prompt"},
-          {"id": "tab-study-materials", "text": "Study Materials"}
-        ]
-      },
-      "tabContentContainer": {
-        "element": "div.bg-white.rounded-b-lg.shadow-md.p-6",
-        "panes": [
-          {"id": "content-learning-flow", "controlledBy": "#tab-learning-flow", "initialState": "active"},
-          {"id": "content-flowchart", "controlledBy": "#tab-flowchart"},
-          {"id": "content-grok-prompt", "controlledBy": "#tab-grok-prompt"},
-          {"id": "content-study-materials", "controlledBy": "#tab-study-materials"}
-        ]
-      }
-    }
-  },
-  "tabs": [
-    {
-      "id": "content-learning-flow",
-      "name": "Learning Flow",
-      "description": "Displays an interactive, step-by-step guide for a learning session using the provided resources. Implemented as a React component.",
-      "content": {
-        "reactRoot": "#learning-flow-app"
-      }
-    },
-    {
-      "id": "content-flowchart",
-      "name": "Flowchart",
-      "description": "Shows a visual flowchart of the recommended learning process using Mermaid.js.",
-      "content": {
-        "title": "h2",
-        "description": "p",
-        "flowchartContainer": "div.mermaid#flowchart",
-        "legend": "div explaining color codes"
-      }
-    },
-    {
-      "id": "content-grok-prompt",
-      "name": "Grok Prompt",
-      "description": "Provides a pre-written prompt for the Grok AI tutor, instructions on how to use it with downloaded PDFs, displays the current topic's materials, and offers quick access to all topics.",
-      "layout": "Two-column grid (md:grid-cols-2)",
-      "content": {
-        "leftColumn": {
-          "promptDisplay": "pre#grok-prompt",
-          "copyButton": "button#copy-button",
-          "openGrokLink": "a[href='https://grok.com']",
-          "instructions": "ol",
-          "helpLink": "a[href='https://youtu.be/KPovHIIHfEo']"
+      "concept": "Core Structure",
+      "description": "The fundamental hierarchical organization defined by primary HTML tags.",
+      "type": "StructuralContainer",
+      "components": [
+        {
+          "concept": "DOCTYPE Declaration",
+          "description": "Specifies the HTML version (HTML5) and triggers standards mode in browsers.",
+          "type": "Declaration",
+          "syntax": "<!DOCTYPE html>",
+          "importance": "High",
+          "location": "First line of the file"
         },
-        "rightColumn": {
-          "currentTopicBox": {
-            "header": "h3#current-topic-header",
-            "infoContainer": "div#current-topic-info",
-            "completeButton": "button#complete-current-topic-btn"
-          },
-          "quickAccessBox": {
-            "header": "h3.grok-prompt-topics-header",
-            "topicsContainer": "div#quick-access-topics"
-          }
-        },
-        "videoBackupInfo": "Text explaining the (+) symbol for video backups."
-      }
+        {
+          "concept": "html Element",
+          "tag": "<html>",
+          "description": "The root element encompassing all other elements in the document.",
+          "type": "RootElement",
+          "attributes": [
+            {"name": "lang", "description": "Specifies the primary language of the document content."}
+          ],
+          "children": [
+            {
+              "concept": "Head Section",
+              "tag": "<head>",
+              "description": "Contains metadata about the HTML document, not displayed directly on the page.",
+              "type": "MetadataContainer",
+              "components": [
+                { "concept": "Character Encoding", "tag": "<meta charset='UTF-8'>", "description": "Declares the character encoding, vital for correct text rendering.", "type": "MetadataElement" },
+                { "concept": "Viewport Settings", "tag": "<meta name='viewport'>", "description": "Configures the viewport for responsive design on different devices.", "type": "MetadataElement", "attributes": [{"name": "content", "example": "width=device-width, initial-scale=1.0"}] },
+                { "concept": "Document Title", "tag": "<title>", "description": "Sets the title displayed in the browser tab or window title bar.", "type": "MetadataElement", "content_type": "Text" },
+                { "concept": "CSS Link", "tag": "<link rel='stylesheet'>", "description": "Links external CSS files for styling.", "type": "ResourceLink", "attributes": [{"name": "href", "description": "URL of the CSS file"}], "related_concept": "CSS" },
+                { "concept": "Internal CSS", "tag": "<style>", "description": "Embeds CSS rules directly within the HTML.", "type": "StyleDefinition", "related_concept": "CSS" },
+                { "concept": "JavaScript Link (Head)", "tag": "<script>", "description": "Links external or embeds internal JavaScript (can block rendering if placed here without `defer` or `async`).", "type": "ScriptElement", "attributes": [{"name": "src", "description": "URL of the JS file"}, {"name": "defer"}, {"name": "async"}], "related_concept": "JavaScript" },
+                { "concept": "Metadata Tags", "tag": "<meta>", "description": "Provides other metadata (description, keywords, author, etc.).", "type": "MetadataElement", "attributes": [{"name": "name"}, {"name": "content"}] },
+                { "concept": "Favicon Link", "tag": "<link rel='icon'>", "description": "Specifies the icon for the browser tab/bookmarks.", "type": "ResourceLink", "attributes": [{"name": "href"}, {"name": "type"}] }
+              ]
+            },
+            {
+              "concept": "Body Section",
+              "tag": "<body>",
+              "description": "Contains the visible content of the web page presented to the user.",
+              "type": "ContentContainer",
+              "components": [
+                {
+                  "concept": "HTML Elements (Tags)",
+                  "description": "Building blocks defining structure, semantics, and content.",
+                  "type": "CoreComponent",
+                  "categories": [
+                    {"name": "Semantic Elements", "examples": ["<header>", "<footer>", "<nav>", "<main>", "<article>", "<section>", "<aside>"]},
+                    {"name": "Headings", "examples": ["<h1>", "<h2>", "<h3>", "<h4>", "<h5>", "<h6>"]},
+                    {"name": "Paragraphs", "examples": ["<p>"]},
+                    {"name": "Lists", "examples": ["<ul>", "<ol>", "<li>"]},
+                    {"name": "Links", "examples": ["<a>"]},
+                    {"name": "Images", "examples": ["<img>"]},
+                    {"name": "Tables", "examples": ["<table>", "<thead>", "<tbody>", "<tr>", "<th>", "<td>"]},
+                    {"name": "Forms", "examples": ["<form>", "<input>", "<textarea>", "<button>", "<label>", "<select>"]},
+                    {"name": "Divisions & Spans", "examples": ["<div>", "<span>"]},
+                    {"name": "Multimedia", "examples": ["<audio>", "<video>", "<canvas>"]},
+                    {"name": "Text Formatting", "examples": ["<strong>", "<em>", "<code>", "<pre>", "<br>"]}
+                  ]
+                },
+                {
+                  "concept": "Attributes",
+                  "description": "Modifiers providing additional information or configuration for elements.",
+                  "type": "CoreComponent",
+                  "common_attributes": ["id", "class", "style", "title", "data-*"],
+                  "element_specific_attributes": ["src", "href", "alt", "type", "value", "placeholder", "action", "method"]
+                },
+                {
+                  "concept": "Content",
+                  "description": "The actual text, images, and other media displayed.",
+                  "type": "CoreComponent",
+                  "content_types": ["Text Nodes", "Element Nodes", "Comments"]
+                },
+                 { "concept": "JavaScript Link/Embed (Body)", "tag": "<script>", "description": "Links external or embeds internal JavaScript, often placed at the end of the body for better performance.", "type": "ScriptElement", "attributes": [{"name": "src"}, {"name": "defer"}, {"name": "async"}], "related_concept": "JavaScript" }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
-      "id": "content-study-materials",
-      "name": "Study Materials",
-      "description": "Lists all Unit 2 topics with links to download question/answer PDFs and watch associated videos (AP Classroom + Google Drive backups). Allows users to track their progress.",
-      "content": {
-        "allCompletedMessage": "div#all-completed-container (initially hidden)",
-        "resetButton": "button#reset-progress-btn (inside completed message)",
-        "grokPromptCTA": "Banner encouraging use of the Grok Prompt tab.",
-        "progressTracker": {
-          "dropdown": "select#topic-select",
-          "progressBarContainer": "div#progress-container",
-          "progressBar": "div#progress-bar"
+      "concept": "Associated Technologies & Concepts",
+      "description": "External technologies and browser mechanisms interacting with the HTML.",
+      "type": "RelatedConcepts",
+      "components": [
+        {
+          "concept": "CSS (Cascading Style Sheets)",
+          "description": "Defines the presentation, styling, and layout of HTML elements.",
+          "relationship": "Linked via <link>, embedded via <style>, or applied inline via 'style' attribute.",
+          "interaction": "Selects HTML elements (using selectors like tag names, classes, IDs) and applies style rules.",
+          "type": "StylingTechnology"
         },
-        "topicCardsContainer": "div#topic-cards-container",
-        "nextTopicContainer": "div#next-topic-container (initially hidden)",
-        "nextTopicCardDisplay": "div#next-topic-card",
-        "videoBackupInfo": "Text explaining the (+) symbol for video backups."
-      }
-    }
-  ],
-  "dynamicContent": {
-    "dataSources": [
-      {
-        "name": "flowchartDefinition (constant)",
-        "type": "String (Mermaid syntax)",
-        "purpose": "Defines the structure of the flowchart."
-      },
-      {
-        "name": "grokPrompt (constant)",
-        "type": "String",
-        "purpose": "Holds the text for the Grok AI tutor prompt."
-      },
-      {
-        "name": "pdfFiles (constant array)",
-        "type": "Array of Objects",
-        "purpose": "Central data structure defining each topic's details (ID, name, description, PDF paths, video URLs, completion status, current status, capstone status). Drives the content of 'Study Materials' and 'Grok Prompt' tabs.",
-        "persistence": "Completion and current status are loaded from and saved to localStorage."
-      }
-    ],
-    "javascriptFunctions": [
-      {"name": "mermaid.initialize", "purpose": "Configures Mermaid.js."},
-      {"name": "renderFlowchart", "purpose": "Renders the Mermaid flowchart in #flowchart."},
-      {"name": "createTopicCard", "purpose": "Generates HTML for a topic card based on pdfFiles data and status."},
-      {"name": "populateTopicCards", "purpose": "Populates #topic-cards-container using createTopicCard."},
-      {"name": "populateTopicSelect", "purpose": "Populates #topic-select dropdown."},
-      {"name": "updateProgressBar", "purpose": "Updates the width and text of #progress-bar."},
-      {"name": "checkAllTopicsCompleted", "purpose": "Checks if all topics in pdfFiles are marked complete. Shows/hides #all-completed-container."},
-      {"name": "resetProgress", "purpose": "Resets completion status in pdfFiles, saves to localStorage, and updates UI."},
-      {"name": "markTopicAsCompleted", "purpose": "Updates a topic's status in pdfFiles, saves, updates UI (cards, progress bar, current topic). Exposed globally.",
-        "triggeredBy": "Buttons within dynamically generated topic cards (`onclick=\"markTopicAsCompleted(...)\"`) and `#complete-current-topic-btn`."
+        {
+          "concept": "JavaScript (JS)",
+          "description": "Provides interactivity, dynamic content updates, and client-side logic.",
+          "relationship": "Linked or embedded via <script> tags.",
+          "interaction": "Interacts with the DOM to manipulate HTML elements, handle events, and communicate with servers.",
+          "type": "ScriptingTechnology"
         },
-      {"name": "updateNextTopic", "purpose": "Updates the content of #next-topic-container."},
-      {"name": "saveTopicProgress", "purpose": "Saves topic completion/current status from pdfFiles to localStorage."},
-      {"name": "loadTopicProgress", "purpose": "Loads topic status from localStorage into pdfFiles."},
-      {"name": "updateCurrentTopicInfo", "purpose": "Updates the #current-topic-info section in the Grok Prompt tab based on the 'current' topic in pdfFiles. Manages the state/action of #complete-current-topic-btn."},
-      {"name": "populateQuickAccessTopics", "purpose": "Populates #quick-access-topics in the Grok Prompt tab with clickable topic summaries."},
-      {"name": "setTopicAsCurrent", "purpose": "Updates the 'current' topic in pdfFiles based on user interaction in the Grok Prompt tab quick access list."}
-    ],
-    "eventHandling": {
-      "DOMContentLoaded": [
-        "Initializes Grok prompt text.",
-        "Sets up tab switching logic (adding/removing 'active' classes, triggering renders/updates for specific tabs).",
-        "Attaches click listener to #copy-button for clipboard functionality.",
-        "Attaches click listener to #reset-progress-btn.",
-        "Loads initial progress and populates relevant tabs."
-      ],
-      "Tab Button Clicks": "Switches active tab and content pane, triggers relevant updates (e.g., Mermaid render, topic card population).",
-      "Copy Button Click": "Copies text from #grok-prompt to clipboard, provides visual feedback.",
-      "Topic Select Change": "Scrolls the view to the selected topic card in the Study Materials tab.",
-      "Mark Completed Button Click": "(See `markTopicAsCompleted` function).",
-      "Reset Button Click": "Calls `resetProgress` function.",
-      "Quick Access Topic Click (Grok Tab)": "Calls `setTopicAsCurrent` to change the focused topic."
+        {
+          "concept": "DOM (Document Object Model)",
+          "description": "A programming interface (API) for the HTML document. Represents the page structure as a tree of objects.",
+          "relationship": "Generated by the browser based on the HTML source code.",
+          "interaction": "Manipulated by JavaScript to dynamically change the page content and structure. Used by CSS for applying styles.",
+          "type": "BrowserAPI"
+        },
+        {
+          "concept": "Browser Rendering Engine",
+          "description": "The core browser component responsible for parsing HTML/CSS, building the DOM/CSSOM, executing JS, and painting the page.",
+          "type": "BrowserInternals",
+          "process_steps": ["Parse HTML -> Build DOM Tree", "Parse CSS -> Build CSSOM Tree", "Combine DOM & CSSOM -> Render Tree", "Layout Calculation", "Painting"]
+        },
+        {
+            "concept": "HTTP/HTTPS Protocol",
+            "description": "The protocol used to request the HTML file and its associated resources (CSS, JS, images) from the web server.",
+            "type": "NetworkProtocol"
+        },
+        {
+            "concept": "Web Server",
+            "description": "The software/hardware that hosts the HTML file and responds to browser requests.",
+            "type": "ServerInfrastructure"
+        }
+      ]
     },
-    "stateManagement": {
-      "topicProgress": {
-        "storage": "localStorage",
-        "key": "apStatsTopicProgress",
-        "dataStored": "Array of {id, completed, current, videoUrls} for each topic.",
-        "managedBy": "`saveTopicProgress`, `loadTopicProgress`, `resetProgress`, `markTopicAsCompleted` functions."
-      }
+    {
+      "concept": "Key HTML Concepts",
+      "description": "Fundamental principles underlying HTML usage.",
+      "type": "ConceptualPrinciples",
+      "components": [
+        {"concept": "Semantics", "description": "Using HTML elements according to their meaning and purpose (e.g., <nav> for navigation).", "importance": "Accessibility, SEO, Maintainability"},
+        {"concept": "Accessibility (A11y)", "description": "Designing HTML to be usable by people with disabilities (e.g., using alt text, ARIA attributes, semantic tags).", "importance": "Inclusivity, Compliance"},
+        {"concept": "SEO (Search Engine Optimization)", "description": "Structuring HTML and using metadata (title, meta description) effectively for search engines.", "importance": "Discoverability"},
+        {"concept": "Validation", "description": "Checking HTML against W3C standards for correctness.", "importance": "Cross-browser compatibility, Robustness"},
+        {"concept": "Nesting", "description": "The hierarchical arrangement of elements within other elements.", "importance": "Structure, DOM tree formation"}
+      ]
     }
-  },
-  "reactComponent": {
-    "name": "APStatLearningFlow",
-    "location": "Inline <script type=\"text/babel\">",
-    "mountPoint": "#learning-flow-app",
-    "description": "A functional React component displaying a multi-step learning guide.",
-    "state": {
-      "currentStep": "Managed using React.useState, determines which step's content is displayed."
-    },
-    "data": {
-      "steps": "Hardcoded array of objects, each defining a step's title, icon, content, tips, and color."
-    },
-    "functionality": [
-      "Displays steps sequentially.",
-      "Uses icons and color-coding for different phases (Setup, Video, Practice, Progress).",
-      "Provides 'Previous Step' and 'Next Step' buttons for navigation.",
-      "Includes a static list of required materials."
-    ],
-    "styling": "Uses Tailwind CSS classes, dynamically applies color classes based on step color.",
-    "rendering": "Managed by ReactDOM.render."
-  }
+  ]
 }
