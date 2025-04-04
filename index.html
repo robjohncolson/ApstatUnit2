@@ -873,7 +873,37 @@ Thank you for helping me prepare for my AP Statistics exam!`;
 
         // Function to check if all topics are completed
         function checkAllTopicsCompleted() {
-            const allCompleted = pdfFiles.every(topic => isTopicCompleted(topic));
+            // Count total and completed individual items across all topics
+            let totalItemCount = 0;
+            let completedItemCount = 0;
+            
+            // Iterate through each topic
+            pdfFiles.forEach(topic => {
+                // Count videos
+                if (topic.videos && Array.isArray(topic.videos)) {
+                    topic.videos.forEach(video => {
+                        totalItemCount++;
+                        if (video.completed) {
+                            completedItemCount++;
+                        }
+                    });
+                }
+                
+                // Count quizzes
+                if (topic.quizzes && Array.isArray(topic.quizzes)) {
+                    topic.quizzes.forEach(quiz => {
+                        totalItemCount++;
+                        if (quiz.completed) {
+                            completedItemCount++;
+                        }
+                    });
+                }
+            });
+            
+            // All items are completed if we have at least one item and all are completed
+            const allCompleted = totalItemCount > 0 && totalItemCount === completedItemCount;
+            
+            // Update UI elements based on completion status
             const completedContainer = document.getElementById('all-completed-container');
             const topicCardsContainer = document.getElementById('topic-cards-container');
             const studyMaterialsTab = document.getElementById('content-study-materials');
@@ -1054,16 +1084,43 @@ Thank you for helping me prepare for my AP Statistics exam!`;
         
         // Function to update the progress bar
         function updateProgressBar() {
-            const completedCount = pdfFiles.filter(topic => isTopicCompleted(topic)).length;
-            const totalCount = pdfFiles.length;
-            const progressPercentage = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
+            // Count total and completed individual items across all topics
+            let totalItemCount = 0;
+            let completedItemCount = 0;
             
+            // Iterate through each topic
+            pdfFiles.forEach(topic => {
+                // Count videos
+                if (topic.videos && Array.isArray(topic.videos)) {
+                    topic.videos.forEach(video => {
+                        totalItemCount++;
+                        if (video.completed) {
+                            completedItemCount++;
+                        }
+                    });
+                }
+                
+                // Count quizzes
+                if (topic.quizzes && Array.isArray(topic.quizzes)) {
+                    topic.quizzes.forEach(quiz => {
+                        totalItemCount++;
+                        if (quiz.completed) {
+                            completedItemCount++;
+                        }
+                    });
+                }
+            });
+            
+            // Calculate progress percentage
+            const progressPercentage = totalItemCount > 0 ? (completedItemCount / totalItemCount) * 100 : 0;
+            
+            // Update the progress bar
             const progressBar = document.getElementById('progress-bar');
             progressBar.style.width = `${progressPercentage}%`;
             
             // Add text to the progress bar if it's big enough
             if (progressPercentage > 10) {
-                progressBar.textContent = `${Math.round(progressPercentage)}% Complete`;
+                progressBar.textContent = `${Math.round(progressPercentage)}% Complete (${completedItemCount}/${totalItemCount})`;
             } else {
                 progressBar.textContent = '';
             }
