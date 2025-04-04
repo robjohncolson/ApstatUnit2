@@ -1035,14 +1035,12 @@ Thank you for helping me prepare for my AP Statistics exam!`;
             if (topic) {
                 // Mark all videos as completed
                 topic.videos.forEach(video => {
-                    video.completed = true;
-                    video.completionDate = video.completionDate || new Date().toISOString();
+                    markVideoComplete(topicId, video.url || video.altUrl, true);
                 });
                 
                 // Mark all quizzes as completed
                 topic.quizzes.forEach(quiz => {
-                    quiz.completed = true;
-                    quiz.completionDate = quiz.completionDate || new Date().toISOString();
+                    markQuizComplete(topicId, quiz.quizId, true);
                 });
                 
                 topic.current = false;
@@ -1056,10 +1054,10 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                     }
                 }
                 
-                // Update local storage to persist completion status
+                // Save the changes to localStorage
                 saveTopicProgress();
                 
-                // Refresh the UI
+                // Refresh the UI (only need to call these once since markVideoComplete and markQuizComplete already call them)
                 populateTopicCards();
                 updateNextTopic();
                 
@@ -1744,30 +1742,110 @@ Thank you for helping me prepare for my AP Statistics exam!`;
             }
         }
         
+        // Function to mark a video as completed or uncompleted
+        function markVideoComplete(topicId, videoUrl, isCompleted) {
+            // Find the topic in pdfFiles
+            const topic = pdfFiles.find(t => t.id === topicId);
+            if (!topic) {
+                console.error(`Topic with ID ${topicId} not found.`);
+                return;
+            }
+            
+            // Find the specific video within the topic's videos array
+            const video = topic.videos.find(v => v.url === videoUrl || v.altUrl === videoUrl);
+            if (!video) {
+                console.error(`Video with URL ${videoUrl} not found in topic ${topicId}.`);
+                return;
+            }
+            
+            // Update the video's completed status
+            video.completed = isCompleted;
+            
+            // Update the completion date
+            if (isCompleted) {
+                video.completionDate = new Date().toISOString();
+            } else {
+                video.completionDate = null;
+            }
+            
+            // Save to localStorage
+            saveTopicProgress();
+            
+            // Refresh UI
+            populateTopicCards();
+            updateCurrentTopicInfo();
+            populateQuickAccessTopics();
+            updateProgressBar();
+            
+            // Check local storage quota
+            checkLocalQuota();
+        }
+
+        // Function to mark a quiz as completed or uncompleted
+        function markQuizComplete(topicId, quizId, isCompleted) {
+            // Find the topic in pdfFiles
+            const topic = pdfFiles.find(t => t.id === topicId);
+            if (!topic) {
+                console.error(`Topic with ID ${topicId} not found.`);
+                return;
+            }
+            
+            // Find the specific quiz within the topic's quizzes array
+            const quiz = topic.quizzes.find(q => q.quizId === quizId);
+            if (!quiz) {
+                console.error(`Quiz with ID ${quizId} not found in topic ${topicId}.`);
+                return;
+            }
+            
+            // Update the quiz's completed status
+            quiz.completed = isCompleted;
+            
+            // Update the completion date
+            if (isCompleted) {
+                quiz.completionDate = new Date().toISOString();
+            } else {
+                quiz.completionDate = null;
+            }
+            
+            // Save to localStorage
+            saveTopicProgress();
+            
+            // Refresh UI
+            populateTopicCards();
+            updateCurrentTopicInfo();
+            populateQuickAccessTopics();
+            updateProgressBar();
+            
+            // Check local storage quota
+            checkLocalQuota();
+        }
+
+        // Placeholder function for checking local storage quota
+        function checkLocalQuota() {
+            // This function will be implemented later
+            console.log('Checking local storage quota...');
+        }
+
         // Function to handle item completion checkbox changes
         function handleItemCompletionChange(event) {
             const checkbox = event.target;
             const dataset = checkbox.dataset;
-            
-            // Log the data attributes to the console
-            console.log('Checkbox changed:', dataset);
             
             // Get the necessary data attributes
             const topicId = dataset.topicId;
             const itemType = dataset.itemType;
             const itemUrl = dataset.itemUrl;
             const quizId = dataset.quizId;
-            const itemIndex = dataset.itemIndex;
+            const isCompleted = checkbox.checked;
             
-            // Log the specific values
-            console.log({
-                topicId,
-                itemType,
-                itemUrl,
-                quizId,
-                itemIndex,
-                checked: checkbox.checked
-            });
+            // Call the appropriate function based on item type
+            if (itemType === 'video') {
+                markVideoComplete(topicId, itemUrl, isCompleted);
+            } else if (itemType === 'quiz') {
+                markQuizComplete(topicId, quizId, isCompleted);
+            } else {
+                console.error(`Unknown item type: ${itemType}`);
+            }
         }
 
         // Make the topic functions available globally
