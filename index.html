@@ -219,12 +219,6 @@
                 <div id="topic-cards-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <!-- Topic cards will be dynamically inserted here -->
                 </div>
-                
-                <div id="next-topic-container" class="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg hidden">
-                    <h3 class="font-bold text-lg mb-2 text-purple-800">Ready for the next topic?</h3>
-                    <p class="mb-2 text-purple-700">Great job completing the current topic! Here's what to study next:</p>
-                    <div id="next-topic-card" class="p-4 bg-white rounded-lg shadow-md"></div>
-                </div>
             </div>
         </div>
     </div>
@@ -888,9 +882,6 @@ Thank you for helping me prepare for my AP Statistics exam!`;
                 // Show completion message
                 completedContainer.classList.remove('hidden');
                 
-                // Hide the next topic container
-                document.getElementById('next-topic-container').classList.add('hidden');
-                
                 // Add completed state styling to the cards container
                 topicCardsContainer.classList.add('completed-state');
                 
@@ -1056,25 +1047,9 @@ Thank you for helping me prepare for my AP Statistics exam!`;
         
         // Function to update the next topic section
         function updateNextTopic() {
-            const nextTopicContainer = document.getElementById('next-topic-container');
-            const nextTopicCard = document.getElementById('next-topic-card');
-            
-            // Check if all topics are completed
-            if (checkAllTopicsCompleted()) {
-                nextTopicContainer.classList.add('hidden');
-                return;
-            }
-            
-            // Find the first incomplete topic
-            const nextIncompleteIndex = pdfFiles.findIndex(topic => !isTopicCompleted(topic));
-            
-            if (nextIncompleteIndex >= 0) {
-                nextTopicContainer.classList.remove('hidden');
-                nextTopicCard.innerHTML = '';
-                nextTopicCard.appendChild(createTopicCard(pdfFiles[nextIncompleteIndex], true));
-            } else {
-                nextTopicContainer.classList.add('hidden');
-            }
+            // This function is now a no-op since we've removed the next-topic-container
+            // Keeping it for backward compatibility
+            return;
         }
         
         // Function to update the progress bar
