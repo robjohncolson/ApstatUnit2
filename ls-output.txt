@@ -1,16 +1,16 @@
 LPS+ColsonR@LPS-5CD32865BG MINGW64 ~/Downloads/apstat/unit 2 (main)
 $ ls -lR
 .:
-total 365
+total 369
 -rw-r--r-- 1 LPS+ColsonR 4096   9767 Apr  4 12:59 Index-reference-spec.gemini.json
 -rw-r--r-- 1 LPS+ColsonR 4096  94487 Apr  5 22:21 allUnitsData.js
 -rw-r--r-- 1 LPS+ColsonR 4096   2670 Apr  2 19:10 claude-build-prompt.txt
 -rw-r--r-- 1 LPS+ColsonR 4096     89 Apr  2 19:10 gemini-index-spec-maker.txt
 -rw-r--r-- 1 LPS+ColsonR 4096   1865 Apr  2 19:10 grok-gather-material-prompt.txt
--rw-r--r-- 1 LPS+ColsonR 4096 208628 Apr  6 15:41 index.html
+-rw-r--r-- 1 LPS+ColsonR 4096 208628 Apr  6 16:07 index.html
 drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  6 15:54 js/
 -rw-r--r-- 1 LPS+ColsonR 4096   6813 Apr  2 19:10 knowledge-tree.md
--rw-r--r-- 1 LPS+ColsonR 4096   2096 Apr  2 19:10 ls-output.txt
+-rw-r--r-- 1 LPS+ColsonR 4096   5791 Apr  6 15:56 ls-output.txt
 -rw-r--r-- 1 LPS+ColsonR 4096   8224 Apr  2 19:10 media-map.md
 drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  2 19:10 pdfs/
 -rwxr-xr-x 1 LPS+ColsonR 4096   3395 Apr  2 19:10 rename_pdfs.py*
