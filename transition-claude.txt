@@ -1,188 +1,31 @@
-Objective: Adapt the current `index.html` file (which contains the working code from Unit 1) to function correctly for AP Statistics Unit 2. We will use the `js/allUnitsData.js` file as the central source for unit-specific topic data.
+Objective: Convert the current AP Statistics Unit 1 `index.html` file into a functional `index.html` file for Unit 2 (Exploring Two-Variable Data), maintaining a self-contained, monolithic structure.
 
-Current File: `index.html` (in the Unit 2 directory, currently a copy of Unit 1's `index.html`)
+Source File: `index.html` (The current file, containing Unit 1 code and data)
+Target File: `index.html` (This same file, to be modified for Unit 2)
+Reference Files (For YOUR manual data input later): `knowledge-tree.md`, `allUnitsData.js` (or similar source for Unit 2 topic details), `ls-output.txt` (for PDF path confirmation)
 
-Please perform the following modifications within this `index.html` file:
+Please perform the following modifications within this file:
 
-1.  **Change Unit ID Constant:**
-    *   Locate the line: `const UNIT_ID = '1';` (around line 311).
+1.  **Update Unit ID Constant:**
+    *   Find the line: `const UNIT_ID = '1';`
     *   Change it to: `const UNIT_ID = '2';`
 
-2.  **Remove Hardcoded Topic Data:**
-    *   Locate the large `const pdfFiles = [...]` array definition (currently containing Unit 1 topics, starting around line 980).
-    *   **Completely delete** this entire array definition block.
+2.  **Update Static HTML Content:**
+    *   Change the `<title>` tag content from "Unit 1: Exploring One-Variable Data" to: `AP Statistics Unit 2: Exploring Two-Variable Data`.
+    *   Change the main `<h1>` heading content from "Unit 1: Exploring One-Variable Data" to: `AP Statistics Unit 2: Exploring Two-Variable Data`.
+    *   Update the exam weight text (in the `div` with `bg-yellow-100`) to reflect Unit 2's weight (e.g., "Unit 2 represents 5-7% of the AP Statistics Exam", adjust % as needed).
 
-3.  **Implement Dynamic Data Loading:**
-    *   Find the `DOMContentLoaded` event listener (around line 2718).
-    *   **Inside** this listener, immediately **after** the `await identifyUser();` line, **add** the following code block to load Unit 2 data from `js/allUnitsData.js`:
+3.  **Prepare Topic Data Area for Manual Replacement:**
+    *   Locate the start of the `const pdfFiles = [` array definition (around line 980).
+    *   **Delete all the topic objects** currently inside the square brackets `[]`, from the first `{` representing Topic 1.1 down to the last `}` representing the Unit 1 capstone.
+    *   Leave the code as: `const pdfFiles = [ /* USER: PASTE UNIT 2 TOPIC DATA HERE */ ];`
+    *   *(Action Required By User (You): After Claude runs, you MUST manually paste the complete JavaScript array data for Unit 2's topics into this empty array definition. Ensure all topic `id`s are "2-n", `name`s are "Topic 2.n", descriptions match Unit 2, video URLs are correct for Unit 2, `quizId`s are "2-n_q1", and `questionPdf`/`answersPdf` paths correctly use `pdfs/unit2/`)*
 
-    ```javascript
-            // --- Load Unit-Specific Data ---
-            let localPdfFiles = []; // Declare variable to hold the loaded data for this unit
-            const unitData = ALL_UNITS_DATA.find(unit => unit.unitId === `unit${UNIT_ID}`);
+4.  **Verify Local Storage Key Usage:**
+    *   Confirm that the `loadTopicProgress` and `saveTopicProgress` functions use the `UNIT_ID` constant correctly to form the localStorage key (e.g., `localStorage.setItem('apStatsUnit' + UNIT_ID + 'Progress', ...)`). No change should be needed here if Unit 1 was working correctly, but double-check.
 
-            if (unitData && unitData.topics) {
-                // Map the data from ALL_UNITS_DATA structure to the structure functions expect
-                localPdfFiles = unitData.topics.map((topic, index) => ({
-                    id: topic.id,
-                    name: topic.name,
-                    description: topic.description,
-                    // Ensure videos/quizzes arrays exist, mapping completion status initially to false
-                    videos: topic.videos ? topic.videos.map(v => ({ url: v.url, altUrl: v.altUrl, completed: false, completionDate: null })) : [],
-                    quizzes: topic.quizzes ? topic.quizzes.map(q => ({
-                         questionPdf: q.questionPdf, // Ensure PDF paths are relative (e.g., "pdfs/unit2/2.2_quiz.pdf")
-                         answersPdf: q.answersPdf,
-                         quizId: q.quizId,
-                         completed: false,
-                         completionDate: null
-                    })) : [],
-                    isCapstone: topic.isCapstone || false,
-                    current: index === 0 // Mark the first topic of THIS unit as current initially
-                }));
-                console.log(`DEBUG: Loaded ${localPdfFiles.length} topics for Unit ${UNIT_ID} from ALL_UNITS_DATA.`);
+5.  **Verify Supabase `unit_id` Usage:**
+    *   Confirm that the `saveCompletionToSupabase` and `deleteCompletionFromSupabase` functions correctly use the `UNIT_ID` constant when sending data to Supabase. No change should be needed here.
 
-                // *** CRITICAL: Assign to window scope for access by older functions ***
-                // This makes the dynamically loaded data available globally-like.
-                window.currentUnitPdfFiles = localPdfFiles;
-                console.log('DEBUG: Assigned loaded unit data to window.currentUnitPdfFiles');
-
-                // Load saved progress FROM LOCAL STORAGE for THIS unit, potentially overriding 'completed' status
-                // Modify loadTopicProgress to use the loaded data
-                loadTopicProgress(window.currentUnitPdfFiles);
-
-            } else {
-                console.error(`ERROR: Could not find topic data for Unit ${UNIT_ID} in ALL_UNITS_DATA.`);
-                alert(`Error: Could not load data for Unit ${UNIT_ID}. Please check allUnitsData.js.`);
-                // Assign an empty array to prevent errors in functions expecting it
-                window.currentUnitPdfFiles = [];
-            }
-            // --- End Load Unit-Specific Data ---
-    ```
-
-4.  **Modify Functions to Use Loaded Data:**
-    *   Go through the following functions and **replace every instance** where they access the *global* `pdfFiles` variable with `window.currentUnitPdfFiles`.
-    *   Functions to check/modify:
-        *   `createTopicCard(topic, forNextTopic = false)` (Check if it implicitly uses global `pdfFiles` for locking capstone) -> **Modify** the `isCapstoneLocked` check inside it:
-            ```javascript
-            // Find this line inside createTopicCard:
-            // const nonCapstonePdfs = pdfFiles.filter(p => !p.isCapstone);
-            // Replace with:
-            const nonCapstonePdfs = window.currentUnitPdfFiles.filter(p => !p.isCapstone);
-            ```
-        *   `checkAllTopicsCompleted()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach(topic => { /* ... rest of loop ... */ });
-            // Replace pdfFiles.filter(...) inside if needed (if you added logic there).
-            // Also update the capstone card lookup if ID is dynamic:
-            // const capstoneTopic = window.currentUnitPdfFiles.find(t => t.isCapstone);
-            // const capstoneCard = document.getElementById(`topic-card-${capstoneTopic ? capstoneTopic.id : 'exam-frq2'}`); // Use dynamic ID
-            ```
-        *   `resetProgress()` -> **Modify** it to use `window.currentUnitPdfFiles` and call the correct `saveTopicProgress`:
-            ```javascript
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach((topic, index) => { /* ... rest of loop ... */ });
-            // Ensure saveTopicProgress() is called correctly (it should use window.currentUnitPdfFiles internally now).
-            // Update the first card lookup:
-            // const firstTopicId = window.currentUnitPdfFiles.length > 0 ? window.currentUnitPdfFiles[0].id : null;
-            // const firstCard = firstTopicId ? document.getElementById(`topic-card-${firstTopicId}`) : null;
-            ```
-        *   `populateTopicCards()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace pdfFiles.findIndex(...) with:
-            const nextIncompleteIndex = window.currentUnitPdfFiles.findIndex(topic => { /* ... */ });
-            // Replace pdfFiles.forEach(...) loops with:
-            window.currentUnitPdfFiles.forEach((topic, index) => { /* ... */ });
-            ```
-        *   `populateTopicSelect()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach(topic => { /* ... */ });
-            ```
-        *   `markVideoComplete(topicId, videoUrl, isCompleted)` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace const topic = pdfFiles.find(...) with:
-            const topic = window.currentUnitPdfFiles.find(t => t.id === topicId);
-            // Ensure saveTopicProgress() call is correct.
-            ```
-        *   `markQuizComplete(topicId, quizId, isCompleted)` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace const topic = pdfFiles.find(...) with:
-            const topic = window.currentUnitPdfFiles.find(t => t.id === topicId);
-            // Ensure saveTopicProgress() call is correct.
-            ```
-        *   `markTopicAsCompleted(topicId)` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace const topic = pdfFiles.find(...) with:
-            const topic = window.currentUnitPdfFiles.find(t => t.id === topicId);
-            // Replace const currentIndex = pdfFiles.findIndex(...) with:
-            const currentIndex = window.currentUnitPdfFiles.findIndex(t => t.id === topicId);
-            // Replace pdfFiles[...] checks/access with:
-            // if (currentIndex >= 0 && currentIndex < window.currentUnitPdfFiles.length - 1) {
-            //    const nextTopic = window.currentUnitPdfFiles[currentIndex + 1]; /* ... */ }
-            // Update nextCard lookup:
-            // const nextCard = document.getElementById(`topic-card-${window.currentUnitPdfFiles[currentIndex + 1].id}`);
-            ```
-        *   `updateNextTopic()` (If you still use this function) -> **Modify** it similarly to use `window.currentUnitPdfFiles`.
-        *   `updateProgressBar()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach(topic => { /* ... */ });
-            ```
-        *   `saveTopicProgress()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Function signature remains the same, but modify the first line inside:
-            // Replace const progress = pdfFiles.map(...) with:
-            const progress = window.currentUnitPdfFiles.map(topic => ({ /* ... rest of mapping ... */ }));
-            // Ensure it saves with the correct UNIT_ID:
-            // localStorage.setItem('apStatsUnit' + UNIT_ID + 'Progress', JSON.stringify(progress));
-            ```
-        *   `loadTopicProgress(pdfFilesToLoad)` -> **Modify** the function signature to accept the data array and update *that* array instead of a global `pdfFiles`. Change calls within `DOMContentLoaded` to pass `window.currentUnitPdfFiles`.
-            ```javascript
-            // Change signature:
-            function loadTopicProgress(pdfFilesToLoad) { // <-- Add parameter
-                const savedProgress = localStorage.getItem('apStatsUnit' + UNIT_ID + 'Progress');
-                if (savedProgress) {
-                    const progress = JSON.parse(savedProgress);
-                    progress.forEach(savedTopic => {
-                        // Find topic in the PASSED IN array:
-                        const topic = pdfFilesToLoad.find(t => t.id === savedTopic.id); // <-- Use parameter
-                        if (topic) {
-                             // ... rest of the function updates 'topic' properties ...
-                        }
-                    });
-                }
-            }
-            // Ensure the call in DOMContentLoaded is: loadTopicProgress(window.currentUnitPdfFiles);
-            ```
-        *   `updateCurrentTopicInfo()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace const allCompleted = pdfFiles.every(...) with:
-            const allCompleted = window.currentUnitPdfFiles.every(topic => { /* ... */ });
-            // Replace const currentTopic = pdfFiles.find(...) || pdfFiles[0] with:
-            const currentTopic = window.currentUnitPdfFiles.find(topic => topic.current) || (window.currentUnitPdfFiles.length > 0 ? window.currentUnitPdfFiles[0] : null);
-            ```
-        *   `populateQuickAccessTopics()` -> **Modify** it to use `window.currentUnitPdfFiles`:
-            ```javascript
-            // Replace const allCompleted = pdfFiles.every(...) with:
-            const allCompleted = window.currentUnitPdfFiles.every(topic => { /* ... */ });
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach(topic => { /* ... */ });
-             // Replace capstoneTopic = pdfFiles.find(...) with:
-             const capstoneTopic = window.currentUnitPdfFiles.find(topic => topic.isCapstone);
-
-            ```
-        *   `setTopicAsCurrent(topicName)` -> **Modify** it to use `window.currentUnitPdfFiles`:
-             ```javascript
-            // Replace pdfFiles.forEach(...) with:
-            window.currentUnitPdfFiles.forEach(topic => { /* ... */ });
-            ```
-
-5.  **Update Static HTML Content:**
-    *   Change the `<title>` tag content to reflect "Unit 2" (e.g., "AP Statistics Unit 2: Exploring Two-Variable Data").
-    *   Change the main `<h1>` heading content to the correct title for Unit 2 (e.g., "AP Statistics Unit 2: Exploring Two-Variable Data"). Refer to `knowledge-tree.md` if needed.
-    *   Update the text content of the exam weight paragraph (`<div class="mt-2 bg-yellow-100 ...">`) with the correct percentage range for Unit 2 (refer to syllabus or `pdfs/UnitWeights.pdf` if accurate).
-
-6.  **Verify PDF Paths:** Double-check within the `js/allUnitsData.js` file that the `questionPdf` and `answersPdf` paths for Unit 2 topics correctly point to the `pdfs/unit2/` subdirectory (e.g., `"pdfs/unit2/2.2_quiz.pdf"`).
-
-After these changes, the `index.html` file in the Unit 2 directory should load Unit 2 data, track progress specific to Unit 2 in local storage (`apStatsUnit2Progress`), and interact correctly with the shared Supabase backend and `allUnitsData.js`. Test thoroughly.
+**Summary of Manual Step:**
+The most important step **after** running this prompt is for **you** to manually populate the `const pdfFiles = []` array with the correct, complete topic data for **Unit 2**, ensuring all IDs, names, descriptions, video URLs, quiz IDs, and PDF paths (using `pdfs/unit2/`) are accurate for Unit 2.
