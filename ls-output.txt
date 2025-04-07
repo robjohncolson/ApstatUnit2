@@ -1,24 +1,26 @@
+LPS+ColsonR@LPS-5CD32865BG MINGW64 ~/Downloads/apstat/unit 2 (main)
 $ ls -lR
 .:
-total 224
--rw-r--r-- 1 LPS+ColsonR 4096 206610 Apr  6 16:31 index.html
+total 236
+-rw-r--r-- 1 LPS+ColsonR 4096 210424 Apr  6 20:35 index.html
 drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  6 15:54 js/
 -rw-r--r-- 1 LPS+ColsonR 4096   6813 Apr  2 19:10 knowledge-tree.md
--rw-r--r-- 1 LPS+ColsonR 4096   5791 Apr  6 16:11 ls-output.txt
+-rw-r--r-- 1 LPS+ColsonR 4096   5203 Apr  6 16:32 ls-output.txt
+-rwxr-xr-x 1 LPS+ColsonR 4096   6498 Apr  7 11:13 pdf_path_checker.py*
 drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  2 19:10 pdfs/
 -rw-r--r-- 1 LPS+ColsonR 4096   2965 Apr  6 16:32 transition-claude.txt
 
 ./js:
-total 96
--rw-r--r-- 1 LPS+ColsonR 4096 94487 Apr  5 22:23 allUnitsData.js
+total 68
+-rw-r--r-- 1 LPS+ColsonR 4096 67070 Apr  7 11:29 allUnitsData.js
 
 ./pdfs:
 total 244
 -rw-r--r-- 1 LPS+ColsonR 4096 239835 Apr  2 19:10 UnitWeights.pdf
-drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  2 19:10 unit2/
+drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  7 11:31 unit2/
 
 ./pdfs/unit2:
-total 5632
+total 5392
 -rw-r--r-- 1 LPS+ColsonR 4096 191108 Apr  2 19:10 2.2_answers.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 175045 Apr  2 19:10 2.2_quiz.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 294467 Apr  2 19:10 2.3_answers.pdf
@@ -35,35 +37,7 @@ total 5632
 -rw-r--r-- 1 LPS+ColsonR 4096 100476 Apr  2 19:10 2.8_quiz.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 568981 Apr  2 19:10 2.9_answers.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 419025 Apr  2 19:10 2.9_quiz.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 126174 Apr  2 19:10 SG_LeastSquaresRegressionQuiz_67ed50bc5121d0.67ed50bd6243d3.29647806.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 100476 Apr  2 19:10 TB_LeastSquaresRegressionQuiz_67ed50b8d93428.67ed50b9cb8274.15284231.pdf
-drwxr-xr-x 1 LPS+ColsonR 4096      0 Apr  2 19:10 original_files/
 -rw-r--r-- 1 LPS+ColsonR 4096 432738 Apr  2 19:10 unit2_pc_frq_answers.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 224811 Apr  2 19:10 unit2_pc_frq_quiz.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 797175 Apr  2 19:10 unit2_pc_mcq_parta_answers.pdf
 -rw-r--r-- 1 LPS+ColsonR 4096 997894 Apr  2 19:10 unit2_pc_mcq_partb_answers.pdf
-
-./pdfs/unit2/original_files:
-total 5616
--rw-r--r-- 1 LPS+ColsonR 4096 568981 Apr  2 19:10 SG_AnalyzingDeparturesfromLinearityQuiz_67ed5225dfeda5.67ed52279a5008.78939384.pdf
--rw-r--r-- 1 LPS+ColsonR 4096  99407 Apr  2 19:10 SG_CorrelationQuiz_67ed4ed9c88431.67ed4edab73a42.45451863.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 126174 Apr  2 19:10 SG_LeastSquaresRegressionQuiz_67ed505f903aa1.67ed50609042a8.71673336.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 126174 Apr  2 19:10 SG_LeastSquaresRegressionQuiz_67ed50bc5121d0.67ed50bd6243d3.29647806.pdf
--rw-r--r-- 1 LPS+ColsonR 4096  86121 Apr  2 19:10 SG_LinearRegressionModelsQuiz_67ed4f5a572744.67ed4f5b3ba668.55437322.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 191108 Apr  2 19:10 SG_RepresentingTwoCategoricalVariablesQuiz_67ed4dba88b3a1.67ed4dbb775ed2.38423488.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 138802 Apr  2 19:10 SG_RepresentingtheRelationshipBetweenTwoQuantitativeVariablesQuiz_67ed4e56addb54.67ed4e578957b8.78699330.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 171544 Apr  2 19:10 SG_ResidualsQuiz_67ed50036c1ab8.67ed5004654155.77895924.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 294467 Apr  2 19:10 SG_StatisticsforTwoCategoricalVariablesQuiz_67ed4dfec9f0f4.67ed4e000fa7a9.86383723.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 432738 Apr  2 19:10 SG_Unit2ProgressCheckFRQ_67ed5128f29946.67ed512a66a6d1.68756112.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 797175 Apr  2 19:10 SG_Unit2ProgressCheckMCQPartA_67ed50fd54f964.67ed50ff858b62.00857082.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 997894 Apr  2 19:10 SG_Unit2ProgressCheckMCQPartB_67ed50f89fe1b5.67ed50fb0c98a1.32220047.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 419025 Apr  2 19:10 TB_AnalyzingDeparturesfromLinearityQuiz_67ed521fef45b8.67ed522158f7a5.07100302.pdf
--rw-r--r-- 1 LPS+ColsonR 4096  80823 Apr  2 19:10 TB_CorrelationQuiz_67ed4ee3e46173.67ed4ee4d044e5.65433964.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 100476 Apr  2 19:10 TB_LeastSquaresRegressionQuiz_67ed505b0a2767.67ed505bed0073.60417513.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 100476 Apr  2 19:10 TB_LeastSquaresRegressionQuiz_67ed50b8d93428.67ed50b9cb8274.15284231.pdf
--rw-r--r-- 1 LPS+ColsonR 4096  70687 Apr  2 19:10 TB_LinearRegressionModelsQuiz_67ed4f568dcda4.67ed4f57642e91.11826273.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 175045 Apr  2 19:10 TB_RepresentingTwoCategoricalVariablesQuiz_67ed4db650dd40.67ed4db74936a2.53564084.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 135725 Apr  2 19:10 TB_RepresentingtheRelationshipBetweenTwoQuantitativeVariablesQuiz_67ed4e532f2687.67ed4e5412f300.91579080.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 159545 Apr  2 19:10 TB_ResidualsQuiz_67ed4fff296c65.67ed50002d5bc3.73472247.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 218321 Apr  2 19:10 TB_StatisticsforTwoCategoricalVariablesQuiz_67ed4dfb0f5e11.67ed4dfc23e027.77891136.pdf
--rw-r--r-- 1 LPS+ColsonR 4096 224811 Apr  2 19:10 TB_Unit2ProgressCheckFRQ_67ed51244f4c87.67ed51255552d2.35654768.pdf
