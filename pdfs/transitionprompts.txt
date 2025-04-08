@@ -1,0 +1,8 @@
+@index.html take a look at pdfFiles array and create a snippet  where the old refernces to the pdf's are replaced with the new standardized filenames.@ls-output.txt
+
+
+@index.html  is based on unit1 material, but the material we have is for unit 2.  @knowledge-tree.md 
+
+Please replace all references of Unit 1 to Unit2.
+
+Unit 2's AP exam weight is 5-7%
