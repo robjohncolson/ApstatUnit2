@@ -1,0 +1,279 @@
+AP Statistics Unit 2: Exploring Two-Variable Data = %%UNIT_TITLE%%
+AP Statistics Unit 2: Exploring Two-Variable Data = %%UNIT_H1%%
+Unit 2 represents 5-7% of the AP Statistics Exam = %%UNIT_EXAMWEIGHT%%
+2 = %%UNIT_ID%%
+
+[
+    {
+        id: "2-1",
+        name: "Topic 2.1",
+        description: "Introducing Statistics: Are Variables Related?",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/n766cdx9w9?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1epQNhpTqA0qMv8ceTpH5IagjDDUlOPC0/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [],
+        current: false
+      },
+      {
+        id: "2-2",
+        name: "Topic 2.2",
+        description: "Representing Two Categorical Variables",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/6piak9dz9w?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/170yFl1LoVYwYZ8a6coNhfQkfkFiHD1gg/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.2_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.2_answers.pdf",
+                quizId: "2-2_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-3",
+        name: "Topic 2.3",
+        description: "Statistics for Two Categorical Variables",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/5xlg4390iu?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1IZIAXWtHsQfr1o7GZIJ2nnYXaQZt6Xyh/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.3_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.3_answers.pdf",
+                quizId: "2-3_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-4",
+        name: "Topic 2.4",
+        description: "Representing the Relationship Between Two Quantitative Variables",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/mistxmwcx2?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1RCEtVGX87UjgbneQqQKc5rNYhAQb4jPS/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/gf7ybqjkpt?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1ZpPac1ofe4Bot2yrLgwLPvSHdMUHvK4J/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.4_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.4_answers.pdf",
+                quizId: "2-4_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-5",
+        name: "Topic 2.5",
+        description: "Correlation",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/15jvfeyacb?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1UnF2HFBgzzgj7M7_SIxhzJxrWiQQ7Itm/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/xz46lkcplm?sui=33,2",
+                altUrl: "https://youtu.be/bPrP6wb497M",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.5_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.5_answers.pdf",
+                quizId: "2-5_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-6",
+        name: "Topic 2.6",
+        description: "Linear Regression Models",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/8dyu2x687t?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1O_VPIl1W7TNAOi2wWNs0Uphbw11Mlagj/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/5hphawrnfm?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1_NOitEc1RuIwOgfx9lWcjOkq5yDdXToa/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.6_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.6_answers.pdf",
+                quizId: "2-6_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-7",
+        name: "Topic 2.7",
+        description: "Residuals",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/1nld3zauyo?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1bk2KcUGXtM_uqBiv4IHwiXImazzX8S0k/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/gqn51yxt67?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1UjY1FF2ztFtcT5tk6brklCxRanMhFmOf/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.7_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.7_answers.pdf",
+                quizId: "2-7_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-8",
+        name: "Topic 2.8",
+        description: "Least Squares Regression",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/tcc9dyd84p?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1_rLSLHvicUEZYr0YJ49e4rn5ezLP6cGX/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/3oo2fwicoe?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1XuzJlAW6HfR6E4L2DSSYxf66yqbG15dg/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/ikvel44wq7?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1Ghvv9jo8PH9KmX25-23oSRLVlLlUZX7N/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.8_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.8_answers.pdf",
+                quizId: "2-8_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-9",
+        name: "Topic 2.9",
+        description: "Analyzing Departures from Linearity",
+        videos: [
+            {
+                url: "https://apclassroom.collegeboard.org/d/mnkem3n2pk?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/19OKlAS6U2MyiT0E3LMsR8Hxu9LHWt78Q/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            },
+            {
+                url: "https://apclassroom.collegeboard.org/d/h1a9n9iqpk?sui=33,2",
+                altUrl: "https://drive.google.com/file/d/1Y0qapTVLcbLj02JjkzA11uEEWFYPe7Cr/view?usp=drive_link",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_section2.9_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_section2.9_answers.pdf",
+                quizId: "2-9_q1",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        current: false
+      },
+      {
+        id: "2-capstone",
+        name: "Unit 2 Progress Check",
+        description: "Capstone Assessment",
+        videos: [],
+        quizzes: [
+            {
+                questionPdf: "pdfs/unit2/unit2_pc_frq_quiz.pdf",
+                answersPdf: "pdfs/unit2/unit2_pc_frq_answers.pdf",
+                quizId: "2-capstone_q1",
+                completed: false,
+                completionDate: null
+            },
+            {
+                questionPdf: "pdfs/unit2/unit2_pc_mcq_parta_answers.pdf",
+                answersPdf: null,
+                quizId: "2-capstone_q2",
+                completed: false,
+                completionDate: null
+            },
+            {
+                questionPdf: "pdfs/unit2/unit2_pc_mcq_partb_answers.pdf",
+                answersPdf: null,
+                quizId: "2-capstone_q3",
+                completed: false,
+                completionDate: null
+            }
+        ],
+        isCapstone: true,
+        current: false  
+    },
+] = %%PDF_FILES_ARRAY%%
